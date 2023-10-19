@@ -9,8 +9,13 @@ class Server{
         this.app = express();
 
         this.port = process.env.PORT;
+        
+        // Path del login
+        this.authPath = "/api/auth";
 
+        // Path de usuarios
         this.usuarioPath = "/api/usuarios";
+        
 
         // Base datos
         this.conectarDB();
@@ -39,11 +44,10 @@ class Server{
     }
     
     routes(){
-        //GET(recibir), POST(enviar), PUT(modificar/actualizar), DELETE(borrar)
-        // this.app.get("/", function(req, res){
-        //     res.send('Hola 52i');
-        // }); todo esto esta en usuarios.js
-        this.app.use(this.usuarioPath, require("../routes/usuarios"))
+        // auth.js
+        this.app.use(this.authPath, require("../routes/auth"));
+        // usuario.js
+        this.app.use(this.usuarioPath, require("../routes/usuarios"));
     }
     
     listen(){

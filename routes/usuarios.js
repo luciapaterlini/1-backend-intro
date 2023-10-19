@@ -1,6 +1,7 @@
 // aqui se estructuran las rutas
 const { Router } = require("express");
 // ExpressValidator
+const { validarJWT } = require("../middlewares/validar_jwt");
 const { check } = require("express-validator");
 //! ojo con la importacion => es en cascada y tiene q ir abajo de los checks
 const { validarCampos } = require("../middlewares/validar_campos");
@@ -58,6 +59,7 @@ router.put("/:id",
 router.delete("/:id",
 [
   // validaciones
+  validarJWT,
   check("id", "No es un ID válido!").isMongoId(),
   check("id").custom(esIdValido),
 ],
