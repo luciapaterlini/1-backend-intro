@@ -95,6 +95,9 @@ const usuariosDelete = async (req = request, res = response) => {
     // // borrar DEFINITIVAMENTE un usuario
     // const usuarioEliminado = await Usuario.findByIdAndDelete(id);
 
+    // Datos del usuario que hace el pedido
+    const usuarioAdmin = req.usuario;
+
     // Cambiar el ESTADO del usuario
     // 1º localizamos al usuario
     const usuario = await Usuario.findById(id);
@@ -116,6 +119,8 @@ const usuariosDelete = async (req = request, res = response) => {
         mensaje: "Usuario eliminado!",
         // usuarioEliminado,
         usuarioInactivo,
+        // mostrar los datos del usuario que hizo el pedido
+        usuarioAdmin,
     });
 };
 

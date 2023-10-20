@@ -2,6 +2,7 @@
 const { Router } = require("express");
 // ExpressValidator
 const { validarJWT } = require("../middlewares/validar_jwt");
+const { esAdminRole } = require("../middlewares/validar-roles");
 const { check } = require("express-validator");
 //! ojo con la importacion => es en cascada y tiene q ir abajo de los checks
 const { validarCampos } = require("../middlewares/validar_campos");
@@ -46,7 +47,8 @@ router.post(
 );
 
 // PETICION PUT: modificar/actualizar datos
-router.put("/:id",
+router.put(
+  "/:id",
   [
     // validaciones
     check("id", "No es un ID válido!").isMongoId(),
@@ -56,13 +58,17 @@ router.put("/:id",
 );
 
 // PETICION DELETE: borrar datos
-router.delete("/:id",
-[
-  // validaciones
-  validarJWT,
-  check("id", "No es un ID válido!").isMongoId(),
-  check("id").custom(esIdValido),
-],
-usuariosDelete);
+router.delete(
+  "/:id",
+  [
+    // validar JWT
+    validarJWT,
+    esAdminRole,
+    check("id", "No es un ID válido!").isMongoId(),
+    check("id").custom(esIdValido),
+    validarCampos,
+  ],
+  usuariosDelete
+);
 
 module.exports = router;
