@@ -12,9 +12,10 @@ class Server{
         
         // Path del login
         this.authPath = "/api/auth";
-
         // Path de usuarios
         this.usuarioPath = "/api/usuarios";
+        // Path de categorias
+        this.categoriasPath = "/api/categorias";
         
 
         // Base datos
@@ -48,6 +49,8 @@ class Server{
         this.app.use(this.authPath, require("../routes/auth"));
         // usuario.js
         this.app.use(this.usuarioPath, require("../routes/usuarios"));
+        // Categorias
+        this.app.use(this.categoriasPath, require("../routes/categorias"));
     }
     
     listen(){
