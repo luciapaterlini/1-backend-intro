@@ -34,9 +34,19 @@ const esIdValido = async (id) => {
     }
 }
 
+// categoria existe
+const esCategoriaValido = async (id) => {
+    const existeCategoria = await Categorias.findById(id);
+
+    if (!existeCategoria){
+        throw new Error(`La categoria ${id} no existe en la base de datos!`)
+    }
+};
+
 
 module.exports = {
     esMailValido,
     esRolValido,
     esIdValido,
+    esCategoriaValido,
 };
