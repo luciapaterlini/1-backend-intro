@@ -12,12 +12,10 @@ const { validarJWT } = require("../middlewares/validar_jwt");
 const { validarCampos } = require("../middlewares/validar_campos");
 const { esCategoriaValido } = require("../helpers/db_validators");
 
-const router = Router(); // en esta variable le digo q guarde todos los metodos q tenga el router
+const router = Router();
 
-// ruta GET
 router.get("/", [validarJWT], obtenerCategorias);
 
-// ruta GET
 router.get(
   "/:id",
   [
@@ -29,7 +27,6 @@ router.get(
   obtenerCategoria
 );
 
-// ruta POST
 router.post(
   "/",
   [
@@ -41,7 +38,6 @@ router.post(
   crearCategoria
 );
 
-// ruta PUT
 router.put(
   "/:id",
   [
@@ -55,7 +51,6 @@ router.put(
   actualizarCategoria
 );
 
-// ruta DELETE
 router.delete(
   "/:id",
   [
