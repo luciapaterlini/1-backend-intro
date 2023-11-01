@@ -27,7 +27,7 @@ router.get(
     obtenerCurso
 );
 
-
+// ruta post
 router.post(
     "/",
     [
