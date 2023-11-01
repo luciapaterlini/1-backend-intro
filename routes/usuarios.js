@@ -20,8 +20,10 @@ const {
 
 const router = Router();
 
+// PETICION GET: enviar datos
 router.get("/", usuariosGet);
 
+// PETICION POST: recibir datos
 router.post(
   "/",
   [
@@ -38,6 +40,7 @@ router.post(
   usuariosPost
 );
 
+// PETICION PUT: actualizar datos
 router.put(
   "/:id",
   [
@@ -47,6 +50,7 @@ router.put(
   usuariosPut
 );
 
+// PETICION DELETE: borrar datos
 router.delete(
   "/:id",
   [

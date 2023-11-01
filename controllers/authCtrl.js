@@ -7,7 +7,8 @@ const login = async (req = request, res = response) => {
     const { correo, password } = req.body;
 
     try{
-        const usuario = await Usuario.findOne({ correo });
+        const usuario = await Usuario.findOne({ correo }); 
+        // buscamos a un usuario x su correo y guardamos al usuario con todas sus ppropiedades en la variable usuario
 
         if (!usuario){
             return res.status(400).json({

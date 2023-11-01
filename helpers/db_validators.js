@@ -1,5 +1,7 @@
 const Usuario = require("../models/usuario");
 const Rol = require("../models/rol");
+const Categoria = require("../models/categoria")
+const Curso = require("../models/curso");
 
 
 const esMailValido = async (correo) => {
@@ -26,17 +28,25 @@ const esIdValido = async (id) => {
 }
 
 const esCategoriaValido = async (id) => {
-    const existeCategoria = await Categorias.findById(id);
+    const existeCategoria = await Categoria.findById(id);
 
     if (!existeCategoria){
         throw new Error(`La categoria ${id} no existe en la base de datos!`)
     }
 };
 
+const esCursoValido = async (id) => {
+    const existeCurso = await Curso.findById(id);
+
+    if (!existeCurso) {
+        throw new Error(`El Id ${id} no corresponde a un curso existente!`);
+    }
+};
 
 module.exports = {
     esMailValido,
     esRolValido,
     esIdValido,
     esCategoriaValido,
+    esCursoValido,
 };
