@@ -16,9 +16,6 @@ const {
 const router = Router();
 
 router.get("/", obtenerCursos); 
-// muestra todos los cursos disponibles -> los busca en la DB
-// el controlador obtenerCursos lee la base de datos y me devuelve lo q haya
-// no hace falta discriminar usuarios
 
 router.get(
     "/:id",
@@ -29,14 +26,12 @@ router.get(
     ],
     obtenerCurso
 );
-// aqui tampoco validamos usuario, damos permiso a un usuario cualquiera sin q se registre en la pagina
 
 
-//ruta post
 router.post(
     "/",
     [
-        validarJWT, // valida el usuario
+        validarJWT,
         esAdminRole,
         check("nombre", "El nombre es obligatorio").notEmpty(),
         validarCampos,

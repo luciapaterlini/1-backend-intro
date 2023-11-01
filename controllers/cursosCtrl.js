@@ -10,8 +10,8 @@ const obtenerCursos = async (req = request, res = response) => {
         Curso.find(query)
         .skip(Number(desde))
         .limit(Number(limite))
-        .populate("usuario", "nombre") // para saber q usuario hizo la peticion
-        .populate("categoria", "nombre"), // para saber a q categoria corresponde
+        .populate("usuario", "nombre") 
+        .populate("categoria", "nombre"), 
     ]);
 
     res.json({
@@ -37,8 +37,7 @@ const crearCurso = async (req = request, res = response) => {
     const nombre = req.body.nombre.toUpperCase();
 
     const cursoDB = await Curso.findOne({ nombre }); 
-    /* .findOne() -> se le dice x q propiedad quiero q busque el objeto, no trae solo el nombre sino todo el objeto 
-    y lo guarda en la variable cursoDB*/
+
 
     if (cursoDB) {
         res.status(400).json({
@@ -55,15 +54,14 @@ const crearCurso = async (req = request, res = response) => {
         img,
         usuario: req.usuario._id,
     };
-    // data se crea con los datos q vienen desde el req (front)
 
     const curso = new Curso(data);
 
-    await curso.save(); // para mandar a la DB
+    await curso.save(); 
 
     if (curso) {
         res.status(201).json({
-        curso, // este no va en el proyecto final, va solo el status y el msg
+        curso, 
         msg: "El curso fue creado con exito!",
         });
     }

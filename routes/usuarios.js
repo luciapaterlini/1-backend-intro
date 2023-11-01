@@ -2,7 +2,6 @@ const { Router } = require("express");
 const { validarJWT } = require("../middlewares/validar_jwt");
 const { esAdminRole } = require("../middlewares/validar-roles");
 const { check } = require("express-validator");
-//! ojo con la importacion => es en cascada y tiene q ir abajo de los checks
 const { validarCampos } = require("../middlewares/validar_campos");
 
 const {
@@ -20,10 +19,8 @@ const {
 
 const router = Router();
 
-// PETICION GET: enviar datos
 router.get("/", usuariosGet);
 
-// PETICION POST: recibir datos
 router.post(
   "/",
   [
@@ -40,7 +37,6 @@ router.post(
   usuariosPost
 );
 
-// PETICION PUT: actualizar datos
 router.put(
   "/:id",
   [
@@ -50,7 +46,6 @@ router.put(
   usuariosPut
 );
 
-// PETICION DELETE: borrar datos
 router.delete(
   "/:id",
   [

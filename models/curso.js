@@ -17,10 +17,10 @@ const CursoSchema = Schema({
         required: true,
     },
     precio: {
-        type: Number, // este precio lo determinamos nosotros -> iria sin ""
+        type: Number,
         default: 0,
     },
-    categoria: { // entra a la coleccion de categorias 
+    categoria: {
         type: Schema.Types.ObjectId,
         ref: "Categoria",
         required: true,
@@ -31,7 +31,7 @@ const CursoSchema = Schema({
     img: {
         type: String,
     },
-    destacado: { //x ej para la pag favoritos
+    destacado: {
         type: Boolean,
         default: false,
     },
